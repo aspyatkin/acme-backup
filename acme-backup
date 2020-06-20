@@ -23,6 +23,6 @@ rm $DUMP_FILE
 openssl rsautl -encrypt -pubin -inkey $HOME/.acme-backup/key.pub -in $KEY_FILE -out $KEY_ENC_FILE
 rm $KEY_FILE
 
-find "$TMP_DIR" -mindepth 1 -maxdepth 1 -type f -printf "%f\0" | AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" AWS_DEFAULT_OUTPUT="$AWS_DEFAULT_OUTPUT" xargs -0 -I {} /usr/local/bin/aws s3 cp --no-progress "{}" "s3://$AWS_S3_BUCKET_NAME/$FOLDER_NAME/{}"
+find "$TMP_DIR" -mindepth 1 -maxdepth 1 -type f -printf "%f\0" | AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" AWS_DEFAULT_REGION="$AWS_DEFAULT_REGION" AWS_DEFAULT_OUTPUT="$AWS_DEFAULT_OUTPUT" xargs -0 -I {} aws s3 cp --no-progress "{}" "s3://$AWS_S3_BUCKET_NAME/$FOLDER_NAME/{}"
 cd $CUR_DIR
 rm -rf $TMP_DIR
