@@ -1,4 +1,4 @@
-TARGET = acme-backup
+TARGET = sec-archive
 PREFIX = /usr/local/bin
 
 .PHONY: all install uninstall
